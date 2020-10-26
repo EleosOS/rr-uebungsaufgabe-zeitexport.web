@@ -1,0 +1,55 @@
+﻿@model ZeitItem
+@{ 
+    var Kalenderwoche = ZeitexportWeb.Manager.Zeiten.GetKalenderwoche(DateTime.Now.Date);
+}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Zeitexport</title>
+		<link rel="stylesheet" href="/css/site.min.css">
+    </head>
+    <body>
+        <main>
+            <img class="logo" alt="toval" src="/logo.jpg" height="40px" />
+            <h1>Zeitexport</h1>
+
+            <div class="eingabe">
+                <form method="get" asp-action="Woche">
+                    <div class="div-kalenderwoche">
+                        <label class="label-kalenderwoche" asp-for="Datum" for="kw">Kalenderwoche</label>
+                        <input class="input-kalenderwoche" onchange="updateProjektLinks()" asp-for="Datum" type="number" name="kw" value=@Kalenderwoche />
+                    </div>
+
+                    <label asp-for="Projektnummer">Eine Projektnummer eingeben:</label>
+                    <input class="input-projektnummer" type="text" asp-for="Projektnummer" />
+                    <input class="input-submit" type="submit" value=" " />
+                </form>
+                <div asp-validation-summary="All"></div>
+            </div>
+
+            <div class="projektnummern">
+                <h2>Zuletzt angesehene Projekte:</h2>
+                <ul>
+                    @if (LinkRepository.Links.Count() == 0)
+                    {
+                        <li>
+                            <p>Es wurden noch keine Projekte angeschaut.</p>
+                        </li>
+                    } else
+                    {
+                        foreach (string link in LinkRepository.Links)
+                        {
+                            <li>
+                                <a class="projektLink" href="/woche?Projektnummer=@link&kw=@Kalenderwoche">@link</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </main>
+    </body>
+    <script src="/js/index.js"></script>
+</html>

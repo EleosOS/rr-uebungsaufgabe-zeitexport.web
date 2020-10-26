@@ -1,0 +1,63 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+* {
+    font-family: 'Varela Round', Verdana, Geneva, Tahoma, sans-serif;
+}
+
+main {
+    margin: 5% auto;
+    width: 70%;
+}
+
+.validation-summary-errors {
+    color: red !important;
+}
+
+.input-kalenderwoche.input-validation-error {
+    color: red;
+}
+
+.input-projektnummer.input-validation-error {
+    border-bottom: 1px solid red !important;
+}
+
+.eingabe {
+    margin-bottom: 10%;
+}
+
+.div-kalenderwoche {
+    border-bottom: 1px dashed lightgray;
+    margin-bottom: 5%;
+    padding-bottom: 3%;
+}
+
+.label-kalenderwoche {
+    font-size: 24px;
+}
+
+.input-kalenderwoche {
+    border: none;
+    width: 50px;
+    font-size: 24px;
+    color: #008fcd;
+    margin-left: 5px;
+}
+
+.input-projektnummer {
+    border: none;
+    border-bottom: 1px solid #008fcd;
+}
+
+.input-submit {
+    border: none;
+    cursor: pointer;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='306px' height='306px' viewBox='0 0 306 306' style='enable-background:new 0 0 306 306;' xml:space='preserve'%3E%3Cg%3E%3Cg id='chevron-right'%3E%3Cpolygon points='94.35,0 58.65,35.7 175.95,153 58.65,270.3 94.35,306 247.35,153 '/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 5px;
+}
+
+.projektLink, .projektLink::marker {
+    color: #008fcd;
+    text-decoration: none;
+}

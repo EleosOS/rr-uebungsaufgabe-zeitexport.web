@@ -1,0 +1,49 @@
+﻿@model IEnumerable<IGrouping<DateTime?, ZeitItem>>
+@using System.Globalization;
+@{
+    var first = Model.First();
+    var kalenderwoche = ZeitexportWeb.Manager.Zeiten.GetKalenderwoche(first.Key.Value);
+    var deCulture = new CultureInfo("DE-de");
+    
+}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Kalenderwoche @kalenderwoche</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+        <link rel="stylesheet" href="/css/site.min.css" />
+	</head>
+	<body>
+        <main>
+            <div class="top">
+                <img class="logo" alt="toval" src="/logo.png" height="40px" />
+                <a class="zurueck" href="/"></a>
+            </div>
+            <h1>@first.First().Projektnummer - Kalenderwoche @kalenderwoche</h1>
+            <h2>@first.Key.Value.ToString("dd.MM.yyyy") bis @Model.Last().Key.Value.ToString("dd.MM.yyyy")</h2>
+
+            @foreach (var tag in Model)
+            {
+                <div class="tag">
+                    <h3 class="ueberschrift">@deCulture.DateTimeFormat.GetDayName(deCulture.Calendar.GetDayOfWeek(tag.Key.Value))</h3>
+                    <h4 class="datum">@tag.Key.Value.ToString("dd.MM")</h4>
+                    <ul class="eintragListe">
+                        @foreach (var eintrag in tag)
+                        {
+                            <li>
+                                <div class="eintrag">
+                                    <p class="notiz">@eintrag.Notiz</p>
+                                    <p class="stunden">@eintrag.Stunden</p>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+        </main>
+	</body>
+	<script src="/js/list.js"></script>
+</html>
